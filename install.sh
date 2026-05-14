@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # This script sets up the Arch Linux environment with essential packages, services, and configurations.
 
 titleBar() {
@@ -68,27 +69,48 @@ else
     install_packages "${ADDITIONAL_PACKAGES[@]}"  
 fi
 
-# Install zsh and oh-my-zsh
-echo "Installing zsh and oh-my-zsh..."
-install_zsh
+USE_ZSH=false
+if [[ -t 0 ]]; then
+    read -r -p "Do you want to install and use zsh as your default shell? [y/N]: " use_zsh_reply
+    case "$use_zsh_reply" in
+        [Yy]|[Yy][Ee][Ss])
+            USE_ZSH=true
+            ;;
+        *)
+            echo "Skipping zsh installation and setup."
+            ;;
+    esac
+else
+    echo "Non-interactive mode detected. Skipping zsh installation and setup."
+fi
+
+if [[ "$USE_ZSH" == true ]]; then
+    # Install zsh and oh-my-zsh
+    echo "Installing zsh and oh-my-zsh..."
+    install_zsh
+fi
 
 # Create symlinks for dotfiles
 echo "Creating symlinks for dotfiles..."
 cd ~/dotfiles
 
-rm -f ~/.zshrc  # Remove existing .zshrc to avoid conflicts
-stow --adopt zsh
+if [[ "$USE_ZSH" == true ]]; then
+    rm -f ~/.zshrc  # Remove existing .zshrc to avoid conflicts
+    stow --adopt zsh
+fi
+
+rm -f ~/.gitconfig  # Remove existing .gitconfig to avoid conflicts
+rm -rf ~/.config/nvim  # Remove existing nvim config to avoid conflicts
 stow --adopt git
 stow --adopt nvim
 
 if [[ "$DEV_ONLY" == true ]]; then
     echo "Development-only mode enabled. Skipping additional dotfiles."
 else
-    stow --adopt hypr
-    stow --adopt kitty
-    stow --adopt waybar
-    stow --adopt rofi
-    stow --adopt ranger
+    for dir in hypr kitty waybar rofi ranger; do
+        rm -rf ~/.config/$dir  # Remove existing config to avoid conflicts
+        stow --adopt $dir
+    done
 fi
 
 # Add user to docker group
