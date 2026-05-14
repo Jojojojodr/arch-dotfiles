@@ -1,0 +1,6 @@
+require("modules.workspaces")
+require("modules.keybinds")
+require("modules.autostart")
+require("modules.env")
+require("modules.looks")
+require("modules.windowrules")
