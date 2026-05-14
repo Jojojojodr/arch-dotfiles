@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 install_zsh() {
     # Set zsh as the default shell
     zsh_path=$(grep zsh$ /etc/shells | head -n 1)
