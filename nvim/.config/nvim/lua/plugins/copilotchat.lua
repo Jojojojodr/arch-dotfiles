@@ -6,10 +6,12 @@ return {
 		},
 		build = "make tiktoken",
 		opts = {
-			-- See Configuration section for options
+			window = {
+				width = 0.25,
+			},
 		},
 		keys = {
-			{ "<leader>zc", "<cmd>CopilotChatToggle<cr>", desc = "Open Copilot Chat" },
+			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Open Copilot Chat" },
 		},
 	},
 }

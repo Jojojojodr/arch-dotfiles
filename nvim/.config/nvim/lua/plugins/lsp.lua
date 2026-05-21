@@ -174,18 +174,40 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				-- clangd = {},
-				-- gopls = {},
-				-- pyright = {},
-				-- rust_analyzer = {},
-				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-				--
-				-- Some languages (like typescript) have entire language plugins that can be useful:
-				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
-				--
+				clangd = {
+                    cmd = { "clangd", "--offset-encoding=utf-16" },
+                    filetypes = { "c", "cpp", "h", "hpp", "objc", "objcpp" },
+                    root_dir = require("lspconfig.util").root_pattern(".git", "makefile"),
+                },
+				gopls = {
+                    cmd = { "gopls" },
+                    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                    root_dir = require("lspconfig.util").root_pattern("go.work", "go.mod", ".git"),
+                    settings = {
+                        gopls = {
+                            completeUnimported = true,
+                            usePlaceholders = true,
+                            analyses = {
+                                unusedparams = true,
+                            },
+                        },
+                    },
+                },
+				pyright = {
+                    cmd = { "pyright-langserver", "--stdio" },
+                    filetypes = { "python" },
+                    root_dir = require("lspconfig.util").root_pattern(".git", "requirements.txt"),
+                },
+				rust_analyzer = {
+                    cmd = { "rust-analyzer" },
+                    filetypes = { "rust" },
+                    root_dir = require("lspconfig.util").root_pattern("Cargo.toml", ".git"),
+                },
+				ts_ls = {
+                    cmd = { "typescript-language-server", "--stdio" },
+                    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+                    root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json", ".git"),
+                },
 
 				lua_ls = {
 					-- cmd = {...},
