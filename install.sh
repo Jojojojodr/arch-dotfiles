@@ -101,8 +101,10 @@ fi
 
 rm -f ~/.gitconfig  # Remove existing .gitconfig to avoid conflicts
 rm -rf ~/.config/nvim  # Remove existing nvim config to avoid conflicts
+rm -f ~/.tmux.conf # Remove existing tmux config to avoid conflicts
 stow --adopt git
 stow --adopt nvim
+stow --adopt tmux
 
 if [[ "$DEV_ONLY" == true ]]; then
     echo "Development-only mode enabled. Skipping additional dotfiles."
