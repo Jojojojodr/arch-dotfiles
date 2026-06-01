@@ -1,24 +1,43 @@
-# Arch Linux Dotfiles
+# Dotfiles
 
-A simple, modular dotfiles setup for Arch Linux, featuring configs for Hyprland, Neovim, Zsh, and more.
+Arch Linux dotfiles managed with GNU Stow. The install script sets up system packages, development tools, and desktop configs for a Hyprland-based workflow.
 
-## Installation
+## Quick Start
 
 ```bash
-git clone https://github.com/Jojojojodr/arch-dotfiles.git ~/dotfiles
+git clone https://github.com/Jojojojodr/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
 
-## Included Configurations
+If you only want the development tools and shell/editor setup, use:
 
-- **Hyprland** (Wayland compositor)
-- **Waybar** (status bar)
-- **Kitty** (terminal emulator)
-- **Neovim** (modern Vim-based editor)
-- **Zsh** (shell, with Oh My Zsh & Powerlevel10k)
-- **Rofi** (launcher)
+```bash
+./install.sh --dev-only
+```
 
-## Customization
+## What It Does
 
-- **Wallpapers:** Place in `~/Pictures/wallpapers/`
+- Updates the system with `pacman`
+- Installs packages from `packages.conf`
+- Installs `yay` if it is missing
+- Sets up `zsh` when you choose to enable it
+- Symlinks dotfiles into `~/.config` and your home directory with Stow
+
+## Included Configs
+
+- `git`
+- `nvim`
+- `tmux`
+- `zsh`
+- `hypr`
+- `waybar`
+- `rofi`
+- `ranger`
+- `ghostty`
+
+## Notes
+
+- Run the script from the repository root so the relative paths resolve correctly.
+- Reboot after setup to ensure shell, group, and desktop changes take effect.
+- Wallpapers can be stored in `~/Pictures/wallpapers/`.
