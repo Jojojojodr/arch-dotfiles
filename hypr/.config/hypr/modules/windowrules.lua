@@ -25,4 +25,5 @@ hl.window_rule({
     name  = "brave-transparent",
     match = { class = "brave-browser" },
     opacity = 100,
+    border_size = 0,
 })
