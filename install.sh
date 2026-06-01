@@ -109,7 +109,7 @@ stow --adopt tmux
 if [[ "$DEV_ONLY" == true ]]; then
     echo "Development-only mode enabled. Skipping additional dotfiles."
 else
-    for dir in hypr kitty waybar rofi ranger; do
+    for dir in hypr waybar rofi ranger ghostty; do
         rm -rf ~/.config/$dir  # Remove existing config to avoid conflicts
         stow --adopt $dir
     done
