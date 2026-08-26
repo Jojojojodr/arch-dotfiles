@@ -22,8 +22,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name  = "brave-transparent",
+    name  = "brave-opaque",
     match = { class = "brave-browser" },
+    opacity = 100,
+    border_size = 0,
+})
+
+hl.window_rule({
+    name  = "obs-opaque",
+    match = { class = "com.obsproject.Studio" },
     opacity = 100,
     border_size = 0,
 })
