@@ -1,0 +1,41 @@
+[bar]
+scale = 0.75
+bg = "transparent"
+button-rounding = "lg"
+
+[[bar.layout]]
+monitor = "HDMI-A-1"
+show = true
+left = [
+    "dashboard",
+    "media",
+    "clock",
+    "notifications",
+]
+center = ["hyprland-workspaces"]
+right = [
+    "systray",
+    "bluetooth",
+    "network",
+    "microphone",
+    "volume",
+]
+
+[styling.palette]
+bg = "#1a1a22"
+surface = "#1f1f28"
+elevated = "#2a2a37"
+fg = "#dcd7ba"
+fg-muted = "#727169"
+primary = "#957fb8"
+red = "#e82424"
+yellow = "#dca561"
+green = "#98bb6c"
+blue = "#7e9cd8"
+
+[modules.hyprland-workspaces]
+monitor-specific = false
+app-icons-show = true
+
+[modules.media]
+label-max-length = 16

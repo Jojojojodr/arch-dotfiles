@@ -31,9 +31,8 @@ If you only want the development tools and shell/editor setup, use:
 - `tmux`
 - `zsh`
 - `hypr`
-- `waybar`
+- `wayle`
 - `rofi`
-- `ranger`
 - `ghostty`
 
 ## Notes
