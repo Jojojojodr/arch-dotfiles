@@ -76,21 +76,20 @@ install_system() {
     # Install development packages
     echo "Installing development packages..."
     install_packages "${DEV_PACKAGES[@]}"
+    install_packages "${ARCH_DEV_PACKAGES[@]}"
 
     if [[ "$dev_only" == true ]]; then
         echo "Development-only mode enabled. Skipping additional packages."
     else
         echo "Installing desktop packages..."
         install_packages "${DESKTOP_PACKAGES[@]}"
-        
+        install_packages "${ARCH_DESKTOP_PACKAGES[@]}"
+
         xdg-user-dirs-update
 
         # Install additional packages
         echo "Installing additional packages..."
         install_packages "${ADDITIONAL_PACKAGES[@]}"
-
-        # Install AUR packages
-        echo "Installing AUR packages..."
-        install_packages "${AUR_PACKAGES[@]}"
+        install_packages "${ARCH_ADDITIONAL_PACKAGES[@]}"
     fi
 }
